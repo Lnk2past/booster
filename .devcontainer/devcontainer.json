@@ -1,5 +1,5 @@
 {
-  "image": "gcc:13.2.0",
+  "image": "gcc:15.2.0",
   "customizations": {
     // Configure properties specific to VS Code.
     "vscode": {
@@ -12,7 +12,7 @@
       ],
       "settings": {
         "editor.formatOnSave": true,
-        "C_Cpp.default.cppStandard": "c++20"
+        "C_Cpp.default.cppStandard": "c++23"
       }
     }
   },

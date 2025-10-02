@@ -8,9 +8,9 @@ class booster(ConanFile):
     generators = 'CMakeToolchain', 'CMakeDeps'
 
     def requirements(self):
-        self.requires("fmt/12.0.0")
         self.requires("nlohmann_json/3.12.0")
         self.requires("entt/3.15.0")
+        self.requires("mp-units/2.4.0")
 
     def build(self):
         cmake = CMake(self)
