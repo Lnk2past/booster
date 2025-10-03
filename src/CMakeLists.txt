@@ -1,4 +1,4 @@
-add_library(libbooster STATIC ecs/system/movement.cpp)
+add_library(libbooster STATIC ecs/manager.cpp ecs/system/movement.cpp)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
