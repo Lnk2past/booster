@@ -4,4 +4,5 @@
 
 namespace booster
 {
+using Snifster = Manager;
 }
