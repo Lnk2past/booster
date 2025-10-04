@@ -9,3 +9,5 @@ CMakeUserPresets.json
 *.so
 *.dll
 *.exe
+
+logs
