@@ -1,0 +1,8 @@
+{
+    "systems": [
+        "movement"
+    ],
+    "entities": {
+        "dynamic_body": 3
+    }
+}

@@ -1,1 +1,1 @@
-add_subdirectory(kinematic)
+add_subdirectory(runner)

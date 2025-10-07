@@ -2,6 +2,7 @@
 #include "booster/ecs/component/acceleration.hpp"
 #include "booster/ecs/component/position.hpp"
 #include "booster/ecs/component/velocity.hpp"
+#include "booster/ecs/prefab/registry.hpp"
 
 #include <mp-units/systems/si/unit_symbols.h>
 #include <spdlog/sinks/basic_file_sink.h>
@@ -24,4 +25,6 @@ auto dynamic_body(entt::registry &registry, const std::uint32_t n) -> void
                                 std::format("logs/entity_{}/state.log", entt::to_integral(entity)));
     }
 }
+
+static auto reg_dynamic_body = Registry::Registrar("dynamic_body", dynamic_body);
 } // namespace booster::prefab

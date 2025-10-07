@@ -2,6 +2,7 @@
 #include "booster/ecs/component/acceleration.hpp"
 #include "booster/ecs/component/position.hpp"
 #include "booster/ecs/component/velocity.hpp"
+#include "booster/ecs/system/registry.hpp"
 
 #include <mp-units/format.h>
 #include <mp-units/systems/si/chrono.h>
@@ -25,4 +26,6 @@ auto movement(entt::registry &registry, const std::chrono::duration<double> t) -
         logger->info("<{::N[.2f]},{::N[.2f]}>", position.x, position.y);
     });
 }
+
+static auto reg_movement = Registry::Registrar("movement", movement);
 } // namespace booster::system
