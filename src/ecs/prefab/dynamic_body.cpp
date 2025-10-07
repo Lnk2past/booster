@@ -1,28 +1,28 @@
 #include "booster/ecs/prefab/dynamic_body.hpp"
 #include "booster/ecs/component/acceleration.hpp"
+#include "booster/ecs/component/json.hpp"
 #include "booster/ecs/component/position.hpp"
 #include "booster/ecs/component/velocity.hpp"
 #include "booster/ecs/prefab/registry.hpp"
 
 #include <mp-units/systems/si/unit_symbols.h>
-#include <spdlog/sinks/basic_file_sink.h>
-#include <spdlog/spdlog.h>
 
 #include <format>
 
 namespace booster::prefab
 {
-auto dynamic_body(entt::registry &registry, const std::uint32_t n) -> void
+auto dynamic_body(entt::registry &registry, const std::vector<entt::entity> &entities, const nlohmann::json &config)
+    -> void
 {
     using namespace mp_units::si::unit_symbols;
-    for (auto i = std::uint32_t{}; i < n; ++i)
+    for (const auto entity : entities)
     {
-        const auto entity = registry.create();
-        registry.emplace<booster::component::Position>(entity);
-        registry.emplace<booster::component::Velocity>(entity);
-        registry.emplace<booster::component::Acceleration>(entity, 1.0 * m / s / s, 1.0 * m / s / s);
-        spdlog::basic_logger_mt(std::format("entity_{}", entt::to_integral(entity)),
-                                std::format("logs/entity_{}/state.log", entt::to_integral(entity)));
+        registry.emplace<booster::component::Position>(entity,
+                                                       config.at("position").get<booster::component::Position>());
+        registry.emplace<booster::component::Velocity>(entity,
+                                                       config.at("velocity").get<booster::component::Velocity>());
+        registry.emplace<booster::component::Acceleration>(
+            entity, config.at("acceleration").get<booster::component::Acceleration>());
     }
 }
 

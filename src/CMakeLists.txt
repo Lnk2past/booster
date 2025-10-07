@@ -1,4 +1,4 @@
-add_library(libbooster STATIC ecs/manager.cpp ecs/system/movement.cpp ecs/prefab/dynamic_body.cpp)
+add_library(libbooster STATIC ecs/manager.cpp ecs/system/movement.cpp ecs/prefab/dynamic_body.cpp ecs/prefab/team.cpp ecs/prefab/entity.cpp)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 

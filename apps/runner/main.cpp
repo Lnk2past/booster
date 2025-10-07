@@ -1,4 +1,5 @@
 #include "booster/ecs/manager.hpp"
+#include "booster/ecs/prefab/entity.hpp"
 #include "booster/ecs/prefab/registry.hpp"
 #include "booster/ecs/system/registry.hpp"
 
@@ -20,16 +21,21 @@ auto main(int argc, char **argv) -> int
     auto input = std::ifstream{argv[1]};
     auto config = nlohmann::json::parse(input);
 
-    for (auto &system : config["systems"])
+    for (auto &system : config.at("systems"))
     {
         auto fn = booster::system::Registry::instance()[system];
         manager.systems.push_back(fn);
     }
 
-    for (auto &entity : config["entities"].items())
+    for (const auto &spec : config.at("entities"))
     {
-        auto fn = booster::prefab::Registry::instance()[entity.key()];
-        fn(manager.registry, static_cast<std::uint32_t>(entity.value()));
+        const auto count = spec.at("count").get<std::uint32_t>();
+        const auto entities = booster::prefab::create_entities(manager.registry, count);
+        for (const auto &prefab : spec.at("prefabs").items())
+        {
+            auto fn = booster::prefab::Registry::instance()[prefab.key()];
+            fn(manager.registry, entities, prefab.value());
+        }
     }
 
     using namespace std::chrono_literals;

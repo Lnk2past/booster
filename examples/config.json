@@ -2,7 +2,50 @@
     "systems": [
         "movement"
     ],
-    "entities": {
-        "dynamic_body": 3
-    }
+    "entities": [
+        {
+            "count": 3,
+            "prefabs": {
+                "dynamic_body": {
+                    "position": [
+                        0.0,
+                        0.0
+                    ],
+                    "velocity": [
+                        0.0,
+                        0.0
+                    ],
+                    "acceleration": [
+                        1.0,
+                        1.0
+                    ]
+                },
+                "team": {
+                    "name": "blue"
+                }
+            }
+        },
+        {
+            "count": 3,
+            "prefabs": {
+                "dynamic_body": {
+                    "position": [
+                        0.0,
+                        0.0
+                    ],
+                    "velocity": [
+                        0.0,
+                        0.0
+                    ],
+                    "acceleration": [
+                        1.0,
+                        1.0
+                    ]
+                },
+                "team": {
+                    "name": "red"
+                }
+            }
+        }
+    ]
 }

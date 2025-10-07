@@ -7,6 +7,5 @@
 
 namespace booster::prefab
 {
-auto dynamic_body(entt::registry &registry, const std::vector<entt::entity> &entities, const nlohmann::json &config)
-    -> void;
+auto team(entt::registry &registry, const std::vector<entt::entity> &entities, const nlohmann::json &config) -> void;
 } // namespace booster::prefab
