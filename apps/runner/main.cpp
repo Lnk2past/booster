@@ -7,12 +7,17 @@
 #include <chrono>
 #include <fstream>
 
-auto main(int, char **) -> int
+auto main(int argc, char **argv) -> int
 {
+    if (argc < 1)
+    {
+        return 1;
+    }
+
     auto manager = booster::Manager();
     manager.initialize();
 
-    auto input = std::ifstream{"config.json"};
+    auto input = std::ifstream{argv[1]};
     auto config = nlohmann::json::parse(input);
 
     for (auto &system : config["systems"])
