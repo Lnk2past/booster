@@ -1,3 +1,5 @@
+#include "plugin.hpp"
+
 #include "booster/ecs/manager.hpp"
 #include "booster/ecs/prefab/entity.hpp"
 #include "booster/ecs/prefab/registry.hpp"
@@ -6,6 +8,7 @@
 #include <nlohmann/json.hpp>
 
 #include <chrono>
+#include <filesystem>
 #include <fstream>
 
 auto main(int argc, char **argv) -> int
@@ -20,6 +23,12 @@ auto main(int argc, char **argv) -> int
 
     auto input = std::ifstream{argv[1]};
     auto config = nlohmann::json::parse(input);
+
+    for (auto &plugin : config.at("plugins"))
+    {
+        auto plugin_path = std::filesystem::path(plugin);
+        std::ignore = booster::DynamicLibrary(plugin_path);
+    }
 
     for (auto &system : config.at("systems"))
     {

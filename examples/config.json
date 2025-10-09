@@ -1,6 +1,10 @@
 {
+    "plugins": [
+        "/workspaces/booster/examples/libgreet.so"
+    ],
     "systems": [
-        "movement"
+        "movement",
+        "greeting"
     ],
     "entities": [
         {
